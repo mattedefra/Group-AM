@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# PyCharm
+.idea/
+
+# Data (optional depending on teacher)
+data/raw/
+
+# Models
+models/*.pkl
+models/*.pt
+models/*.h5
+
+# Jupyter
+.ipynb_checkpoints/
