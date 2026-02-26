@@ -10,7 +10,7 @@ venv/
 .idea/
 
 # Data (optional depending on teacher)
-data/raw/
+data/hotel_bookings.csv
 
 # Models
 models/*.pkl
