@@ -1,5 +1,4 @@
 import seaborn as sns
-import pandas as pd
 import matplotlib.pyplot as plt
 
 class MultiPlotter9000:
@@ -39,6 +38,7 @@ class MultiPlotter9000:
         plt.tight_layout()
         plt.show()
 
+    #legacy stuff will not work
     def multiplot_violin(self,data,columns, **kwargs):
         cluster = kwargs.get('cluster', False)
         pop_data = kwargs.get('pop_data', 0)
