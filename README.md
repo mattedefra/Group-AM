@@ -27,7 +27,7 @@ Supervised learning — **Binary Classification**
 
 ---
 
-## 2. Data Cleaning (Preprocessing – Phase 1)  
+## 2. Data Cleaning (Preprocessing – Phase 1 - done)  
 **Team:** Matteo and Ana
 
 Before EDA and modeling:  
@@ -43,21 +43,8 @@ Before EDA and modeling:
 **Team:** Matteo and Ana  
 **Date:** Saturday – 28th Feb
 
-**Goals:**  
-- Understand data structure and patterns  
-- Answer key questions:  
-  - What is the distribution of the target?  
-  - Are classes imbalanced?  
-  - Which variables correlate with the target?  
-  - Are relationships linear or nonlinear?  
-  - Any multicollinearity?  
-
-**Techniques:**  
-- Summary statistics  
-- Histograms  
-- Boxplots  
-- Correlation matrix  
-- Crosstabs (categorical variables)  
+### Overview of the Dataset:
+The choosen dataset contains historical hotel booking information with the target variable "IsCanceled" - this is a binary indicator of whether a reservation was canceled (1) or not (0). The dataset includes a mix of numerical and categorical variables describing booking characteristics, customer history, and booking conditions. After the initial data cleaning phase, in which we handled missing values, formatted column names, and standarded data types, the dataset was explored to better understand its structure, detect patterns, and identify relationships between predictors and the target variable.
 
 ---
 
