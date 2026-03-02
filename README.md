@@ -27,7 +27,7 @@ Supervised learning — **Binary Classification**
 
 ---
 
-## 2. Data Cleaning (Preprocessing – Phase 1)  
+## 2. Data Cleaning (Preprocessing – Phase 1 - done)  
 **Team:** Matteo and Ana
 
 Before EDA and modeling:  
@@ -43,21 +43,11 @@ Before EDA and modeling:
 **Team:** Matteo and Ana  
 **Date:** Saturday – 28th Feb
 
-**Goals:**  
-- Understand data structure and patterns  
-- Answer key questions:  
-  - What is the distribution of the target?  
-  - Are classes imbalanced?  
-  - Which variables correlate with the target?  
-  - Are relationships linear or nonlinear?  
-  - Any multicollinearity?  
+### Overview of the Dataset:
+The choosen dataset contains historical hotel booking information with the target variable "IsCanceled" - this is a binary indicator of whether a reservation was canceled (1) or not (0). The dataset includes a mix of numerical and categorical variables describing booking characteristics, customer history, and booking conditions. After the initial data cleaning phase, in which we handled missing values, formatted column names, and standarded data types, the dataset was explored to better understand its structure, detect patterns, and identify relationships between predictors and the target variable.
 
-**Techniques:**  
-- Summary statistics  
-- Histograms  
-- Boxplots  
-- Correlation matrix  
-- Crosstabs (categorical variables)  
+### Distribution of the Target Variable
+In the analysis, the key objective was to examine how the target variable, IsCanceled, is distributed. The results show that theres is a significant share of bookings canceled, which means that the dataset presents a moderate class imbalance. Cancellations represent a large enough portion of the data to require careful evaluation of the model’s performance. Because of this imbalance, accuracy alone would not be an appropriate metric. ROC–AUC is used instead for a more appropriate fitting as it evaluates how well the model distinguishes between canceled and non-canceled bookings across different probability thresholds. In addition, Recall should require some attention for the canceled class, since failing to identify a cancellation (a false negative) can lead to empty rooms and direct revenue loss. Overall, the distribution of the target variable confirms that this is a binary classification problem and that model evaluation must properly account for class imbalance.
 
 ---
 
