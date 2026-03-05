@@ -49,6 +49,7 @@ The choosen dataset contains historical hotel booking information with the targe
 ### Distribution of the Target Variable
 In the analysis, the key objective was to examine how the target variable, IsCanceled, is distributed. The results show that theres is a significant share of bookings canceled, which means that the dataset presents a moderate class imbalance. Cancellations represent a large enough portion of the data to require careful evaluation of the model’s performance. Because of this imbalance, accuracy alone would not be an appropriate metric. ROC–AUC is used instead for a more appropriate fitting as it evaluates how well the model distinguishes between canceled and non-canceled bookings across different probability thresholds. In addition, Recall should require some attention for the canceled class, since failing to identify a cancellation (a false negative) can lead to empty rooms and direct revenue loss. Overall, the distribution of the target variable confirms that this is a binary classification problem and that model evaluation must properly account for class imbalance.
 
+<<<<<<< dionisioaduda-patch-4
 
 ### Linear vs non-linear relationships
 When considering whether relationships are linear or nonlinear, the data suggests that several effects may not follow a simple linear pattern. For example, the impact of LeadTime on cancellations may increase more sharply after a certain threshold. This indicates that models capable of capturing nonlinearities and interactions, such as Random Forest, may perform better than purely linear approaches.
@@ -57,6 +58,26 @@ When considering whether relationships are linear or nonlinear, the data suggest
 Overall, the EDA confirms that the dataset contains meaningful patterns that can support predictive modeling. There are clear signals associated with cancellation risk, moderate class imbalance that justifies the chosen evaluation metrics, and potential nonlinear relationships that motivate the comparison between Logistic Regression and Random Forest.
 
 ---
+=======
+### Numerical Variables
+To better understand the numerical variables, we analyzed them using histograms and boxplots in order to observe their distributions and identify possible outliers. This step was important to understand how booking behaviors are distributed and whether there were extreme values that could influence the modeling phase.
+
+One of the most relevant variables, LeadTime, shows a clearly right-skewed distribution. Most bookings are made relatively close to the arrival date, meaning that shorter lead times are much more common in the dataset. However, there are also bookings made several hundred days in advance, which appear as extreme values in the boxplots. This indicates that while the majority of guests plan their stay within a moderate time frame, a smaller group books far ahead, which may reflect early planners or high-season reservations. A similar pattern can be observed in ADR (Average Daily Rate). Most daily rates fall within a common price range, but there are some significantly higher values visible in the boxplots. These higher rates are likely associated with peak seasons, special events, or more premium room types. Since such price variations are realistic in the hotel industry, these values should not automatically be treated as errors.
+
+Regarding stay duration, both StaysInWeekendNights and StaysInWeekNights are concentrated around shorter stays, typically between one and three nights. Longer stays are present but occur less frequently. In addition, variables such as PreviousCancellations and TotalOfSpecialRequests are highly concentrated at zero. This means that most guests have no prior cancellation history and do not make many special requests. However, a small number of bookings show higher values, which creates skewness in these variables.
+
+### Seasonality 
+When analyzing seasonality and time patterns, we observed that bookings are not evenly distributed throughout the year. Certain months concentrate a higher volume of arrivals, which reflects typical tourism seasonality. More importantly, cancellation rates also vary across months, suggesting that time-related variables such as arrival month may carry predictive power. This indicates that seasonality is not only relevant for demand levels but also for cancellation behavior.
+
+### Correlation and Multicolinearity
+The correlation analysis helped us understand how numerical variables relate to each other and to the target variable. Some variables, such as LeadTime and PreviousCancellations, show a positive relationship with cancellations, meaning that bookings made far in advance and customers with a history of canceling are more likely to cancel again. On the other hand, TotalOfSpecialRequests tends to show a negative relationship with cancellations which suggests that more engaged guests are less likely to cancel - these patterns align well with business intuition.
+Regarding multicollinearity, some numerical features show moderate correlations among themselves, particularly variables related to length of stay. While this is not a major issue for tree-based models like Random Forest, it could affect the stability of coefficients in Logistic Regression - this suggests the improvement in interpretability is feasible with the use of feature engineering, such as combining related stay variables.
+
+### Behavior in Categorical Analysis
+The analysis of categorical variables also provided relevant insights. Different market segments, distribution channels, and customer types present different cancellation behaviors. This reinforces the idea that not all bookings carry the same level of risk and that categorical variables are likely to play an important role in prediction once properly encoded. 
+
+
+>>>>>>> main
 
 ## 4. Feature Engineering  
 **Team:** John and Mohamed
