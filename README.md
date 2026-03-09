@@ -165,6 +165,46 @@ The model was optimized using several specific configurations to handle the comp
 
 **Feature Engineering integration:** The model relies on a custom processing script that creates aggregate features like total_nights and total_guests, and converts text-based months into numeric values for better analysis.
 
+**Model Comparison and Selection**
+The project involved developing and tuning three distinct types of predictive models: Logistic Regression, Gradient Boosting, and Random Forest. Each model was evaluated using a consistent pipeline that included automated feature engineering and preprocessing.
+
+**1. Logistic Regression**
+The Logistic Regression model served as the baseline. After extensive hyperparameter tuning using GridSearchCV, the best version achieved a ROC-AUC of 0.8538 and a Test F1-Score of 0.72. While this model is highly interpretable due to its linear coefficients, it struggled to capture the more complex, non-linear dependencies present in the booking data.
+
+**2. Gradient Boosting**
+The Gradient Boosting Classifier was implemented to leverage the power of sequential tree building. The tuned version reached a ROC-AUC of 0.8955 and an F1-Score of 0.74. Although it performed better than Logistic Regression, it showed a lower recall (0.65) for cancellations, meaning it missed a significant portion of guests who eventually canceled their bookings.
+
+**3. Random Forest**
+The Random Forest model emerged as the superior performer following a RandomizedSearch for optimal hyperparameters. It achieved the highest scores across all critical evaluation metrics:
+
+ROC-AUC Score: 0.9228
+
+Accuracy: 0.85
+
+Precision (Canceled): 0.83
+
+Recall (Canceled): 0.77
+
+F1-Score (Canceled): 0.80
+
+**Why Random Forest is the Best Choice**
+The decision to select Random Forest as the primary model for this project is driven by several key factors:
+
+**Maximum Predictive Power:**
+The Random Forest achieved the highest ROC-AUC (0.9228), indicating a superior ability to distinguish between guests who will stay and those who will cancel. This translates to more reliable business intelligence for hotel management.
+
+**Superior Balance (F1-Score):**
+Unlike the other models, the Random Forest maintained a strong balance between precision (0.83) and recall (0.77). This means the hotel can identify the majority of potential cancellations without raising too many "false alarms" for guests who are likely to show up.
+
+**Handling Non-Linearity and Interactions:**
+The booking dataset contains complex interactions—for instance, how "Lead Time" impacts risk differently depending on the "Market Segment" or "Deposit Type". Random Forest naturally captures these "if-then" relationships through its ensemble of 100 decision trees, whereas Logistic Regression assumes a simpler linear relationship.
+
+**Robustness to Outliers and Noise:**
+By averaging the results of many trees, the Random Forest is less sensitive to the noise identified during the Exploratory Data Analysis, such as extreme values in adr (room rates) or adults.
+
+**Granular Interpretation:**
+Despite its complexity, the model provides clear insights into the business. Through feature importance and SHAP value analysis, it identified that Lead Time (14.17%), Deposit Type (9.89%), and Average Daily Rate (8.67%) are the most critical factors driving the hotel's cancellation rates
+
 ---
 
 ## 9. Model Interpretation  
