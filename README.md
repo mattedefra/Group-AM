@@ -139,31 +139,6 @@ The analysis of categorical variables also provided relevant insights. Different
 - F1 Score  
 - ROC-AUC
   
-Based on the detailed analysis of the project files, the Random Forest model is the superior choice for this dataset, significantly outperforming both the Logistic Regression and Gradient Boosting models across all primary metrics.
-
-**Model Evaluation Results**
-The tuned Random Forest model achieved a high level of predictive accuracy for hotel booking cancellations:
-
-**ROC-AUC Score**: 0.9228, which represents the model's excellent ability to distinguish between canceled and non-canceled bookings.
-
-**Accuracy**: 0.85, meaning 85% of all predictions were correct.
-
-**Precision (Canceled):** 0.83, indicating that when the model predicts a cancellation, it is correct 83% of the time.
-
-**Recall (Canceled):** 0.77, meaning the model successfully identifies 77% of all actual cancellations.
-
-**F1-Score (Canceled):** 0.80, which provides a balance between precision and recall.
-
-**Confusion Matrix:** The model correctly identified 22,419 successful stays and 11,245 cancellations, while missing 3,408 cancellations and incorrectly flagging 2,327 stay-ins.
-
-**Model Characteristics**
-The model was optimized using several specific configurations to handle the complexities of the hotel data:
-
-**Class Imbalance Handling:** It uses the balanced_subsample weight setting to ensure the model doesn't ignore cancellations simply because they are less frequent than successful stays.
-
-**Structural Depth:** The model uses a max_depth of 30 and 100 n_estimators (individual trees) to capture complex, non-linear relationships that a simpler model would miss.
-
-**Feature Engineering integration:** The model relies on a custom processing script that creates aggregate features like total_nights and total_guests, and converts text-based months into numeric values for better analysis.
 
 **Model Comparison and Selection**
 The project involved developing and tuning three distinct types of predictive models: Logistic Regression, Gradient Boosting, and Random Forest. Each model was evaluated using a consistent pipeline that included automated feature engineering and preprocessing.
@@ -204,6 +179,31 @@ By averaging the results of many trees, the Random Forest is less sensitive to t
 
 **Granular Interpretation:**
 Despite its complexity, the model provides clear insights into the business. Through feature importance and SHAP value analysis, it identified that Lead Time (14.17%), Deposit Type (9.89%), and Average Daily Rate (8.67%) are the most critical factors driving the hotel's cancellation rates
+
+
+**Model Evaluation Results**
+The tuned Random Forest model achieved a high level of predictive accuracy for hotel booking cancellations:
+
+**ROC-AUC Score**: 0.9228, which represents the model's excellent ability to distinguish between canceled and non-canceled bookings.
+
+**Accuracy**: 0.85, meaning 85% of all predictions were correct.
+
+**Precision (Canceled):** 0.83, indicating that when the model predicts a cancellation, it is correct 83% of the time.
+
+**Recall (Canceled):** 0.77, meaning the model successfully identifies 77% of all actual cancellations.
+
+**F1-Score (Canceled):** 0.80, which provides a balance between precision and recall.
+
+**Confusion Matrix:** The model correctly identified 22,419 successful stays and 11,245 cancellations, while missing 3,408 cancellations and incorrectly flagging 2,327 stay-ins.
+
+**Model Characteristics**
+The model was optimized using several specific configurations to handle the complexities of the hotel data:
+
+**Class Imbalance Handling:** It uses the balanced_subsample weight setting to ensure the model doesn't ignore cancellations simply because they are less frequent than successful stays.
+
+**Structural Depth:** The model uses a max_depth of 30 and 100 n_estimators (individual trees) to capture complex, non-linear relationships that a simpler model would miss.
+
+**Feature Engineering integration:** The model relies on a custom processing script that creates aggregate features like total_nights and total_guests, and converts text-based months into numeric values for better analysis.
 
 ---
 
