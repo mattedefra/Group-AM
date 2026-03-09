@@ -152,15 +152,11 @@ The Gradient Boosting Classifier was implemented to leverage the power of sequen
 **3. Random Forest**
 The Random Forest model emerged as the superior performer following a RandomizedSearch for optimal hyperparameters. It achieved the highest scores across all critical evaluation metrics:
 
-ROC-AUC Score: 0.9228
-
-Accuracy: 0.85
-
-Precision (Canceled): 0.83
-
-Recall (Canceled): 0.77
-
-F1-Score (Canceled): 0.80
+- ROC-AUC Score: 0.9228
+- Accuracy: 0.85
+- Precision (Canceled): 0.83
+- Recall (Canceled): 0.77
+- F1-Score (Canceled): 0.80
 
 ## **Why Random Forest is the Best Choice**
 The decision to select Random Forest as the primary model for this project is driven by several key factors:
@@ -184,17 +180,12 @@ Despite its complexity, the model provides clear insights into the business. Thr
 # **Model Evaluation Results**
 The tuned Random Forest model achieved a high level of predictive accuracy for hotel booking cancellations:
 
-**ROC-AUC Score**: 0.9228, which represents the model's excellent ability to distinguish between canceled and non-canceled bookings.
-
-**Accuracy**: 0.85, meaning 85% of all predictions were correct.
-
-**Precision (Canceled):** 0.83, indicating that when the model predicts a cancellation, it is correct 83% of the time.
-
-**Recall (Canceled):** 0.77, meaning the model successfully identifies 77% of all actual cancellations.
-
-**F1-Score (Canceled):** 0.80, which provides a balance between precision and recall.
-
-**Confusion Matrix:** The model correctly identified 22,419 successful stays and 11,245 cancellations, while missing 3,408 cancellations and incorrectly flagging 2,327 stay-ins.
+- **ROC-AUC Score**: 0.9228, which represents the model's excellent ability to distinguish between canceled and non-canceled bookings.
+- **Accuracy**: 0.85, meaning 85% of all predictions were correct.
+- **Precision (Canceled):** 0.83, indicating that when the model predicts a cancellation, it is correct 83% of the time.
+- **Recall (Canceled):** 0.77, meaning the model successfully identifies 77% of all actual cancellations.
+- **F1-Score (Canceled):** 0.80, which provides a balance between precision and recall.
+- **Confusion Matrix:** The model correctly identified 22,419 successful stays and 11,245 cancellations, while missing 3,408 cancellations and incorrectly flagging 2,327 stay-ins.
 
 ## **Model Characteristics**
 The model was optimized using several specific configurations to handle the complexities of the hotel data:
