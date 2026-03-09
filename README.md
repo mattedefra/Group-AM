@@ -140,7 +140,7 @@ The analysis of categorical variables also provided relevant insights. Different
 - ROC-AUC
   
 
-## **Model Comparison and Selection**
+# **Model Comparison and Selection**
 The project involved developing and tuning three distinct types of predictive models: Logistic Regression, Gradient Boosting, and Random Forest. Each model was evaluated using a consistent pipeline that included automated feature engineering and preprocessing.
 
 **1. Logistic Regression**
@@ -162,7 +162,7 @@ Recall (Canceled): 0.77
 
 F1-Score (Canceled): 0.80
 
-# **Why Random Forest is the Best Choice**
+## **Why Random Forest is the Best Choice**
 The decision to select Random Forest as the primary model for this project is driven by several key factors:
 
  **Maximum Predictive Power:**
@@ -181,7 +181,7 @@ By averaging the results of many trees, the Random Forest is less sensitive to t
 Despite its complexity, the model provides clear insights into the business. Through feature importance and SHAP value analysis, it identified that Lead Time (14.17%), Deposit Type (9.89%), and Average Daily Rate (8.67%) are the most critical factors driving the hotel's cancellation rates
 
 
-## **Model Evaluation Results**
+# **Model Evaluation Results**
 The tuned Random Forest model achieved a high level of predictive accuracy for hotel booking cancellations:
 
 **ROC-AUC Score**: 0.9228, which represents the model's excellent ability to distinguish between canceled and non-canceled bookings.
@@ -196,7 +196,7 @@ The tuned Random Forest model achieved a high level of predictive accuracy for h
 
 **Confusion Matrix:** The model correctly identified 22,419 successful stays and 11,245 cancellations, while missing 3,408 cancellations and incorrectly flagging 2,327 stay-ins.
 
-# **Model Characteristics**
+## **Model Characteristics**
 The model was optimized using several specific configurations to handle the complexities of the hotel data:
 
 **Class Imbalance Handling:** It uses the balanced_subsample weight setting to ensure the model doesn't ignore cancellations simply because they are less frequent than successful stays.
