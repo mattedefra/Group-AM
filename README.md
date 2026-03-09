@@ -35,7 +35,7 @@ Before EDA and modeling:
 - Remove duplicates  
 - Fix incorrect data types  
 - Normalize formats (dates, categories)  
-- Detect outliers  
+- Detect outliers
 
 ---
 
@@ -217,7 +217,59 @@ The model was optimized using several specific configurations to handle the comp
 - Feature importance  
 - SHAP values  
 - Coefficient interpretation  
-- Partial dependence plots  
+- Partial dependence plots
+  
+## Model Interpretation
+The Random Forest model was selected as the final model because it achieved the best performance during the evaluation stage. However, in business contexts it is also important to understand the factors driving the model’s predictions in order to support informed decision-making.
+
+To improve transparency, the model was interpreted using feature importance, SHAP values, coefficient interpretation from the Logistic Regression benchmark, and partial dependence plots. These techniques help identify the key variables influencing hotel booking cancellations and make the model’s predictions easier for stakeholders to understand.
+
+### Feature Importance
+Feature importance analysis identifies the variables that contribute most to the model’s predictions.
+
+The results show that lead time (14.16%) is the most influential predictor. This suggests that reservations made far in advance are more likely to be cancelled, indicating that hotels may need stronger confirmation policies or reminder strategies for bookings made several months before arrival.
+
+Another important factor is deposit type, particularly non-refundable deposits (9.89%) and no-deposit bookings (9.45%). Deposit conditions reflect the level of financial commitment associated with a reservation, and bookings made without deposits may have a higher probability of cancellation.
+
+The average daily rate (ADR) (8.67%) also influences cancellation behaviour. Higher room prices may increase the likelihood of cancellations if customers reconsider their booking or find alternative accommodation options.
+
+In contrast, total special requests (8.08%) appear to reduce cancellation risk. Guests who make specific requests during the booking process often demonstrate greater engagement with their reservation and are therefore more likely to complete their stay.
+
+Overall, these results highlight that booking timing, payment conditions, pricing, and customer engagement are key factors influencing hotel booking cancellations.
+
+### SHAP Values
+SHAP (Shapley Additive Explanations) values provide a deeper understanding of how individual features influence model predictions. While feature importance identifies the most important variables overall, SHAP values explain how each feature affects the prediction for a specific booking.
+
+The SHAP analysis suggests that:
+- Higher lead times increase the probability of cancellation.
+- Higher ADR values may also increase cancellation risk.
+- A greater number of special requests tends to reduce the likelihood of cancellation.
+- Repeated guests or guests with clearer travel plans are generally less likely to cancel.
+  
+These insights help managers understand why certain bookings are classified as high risk and support more informed decisions, such as applying deposit policies or sending booking reminders.
+
+### Coefficient Interpretation
+Although Random Forest was selected as the final predictive model, Logistic Regression was also examined because its coefficients provide a clear interpretation of how variables influence the probability of cancellation.
+
+In logistic regression models, positive coefficients indicate that a feature increases the likelihood of cancellation, while negative coefficients indicate that the feature reduces that likelihood.
+
+For example, lead time shows a positive relationship with cancellations, meaning that bookings made further in advance are more likely to be canceled.
+
+In contrast, special requests have a negative relationship with cancellations, suggesting that guests who interact more with the booking process are more likely to complete their stay.
+
+Examining these coefficients helps clarify the direction of relationships between variables and booking behaviour, complementing the results from the Random Forest model.
+
+### Partial Dependence Plots
+Partial Dependence Plots (PDPs) help illustrate how the predicted probability of cancellation changes as the value of a specific variable varies, while other variables remain constant.
+
+The PDP for lead time shows that cancellation probability increases as the time between booking and arrival becomes longer. This suggests that reservations made far in advance are more likely to be canceled due to greater uncertainty in travel plans.
+
+The PDP for average daily rate (ADR) shows that higher room prices are associated with a slightly higher probability of cancellation. This may occur when customers reconsider expensive bookings or find cheaper alternative accommodation options.
+
+These visualizations help translate complex model relationships into clear patterns, making the results easier for non-technical stakeholders to understand and apply in decision-making.
+
+### Summary of Insights
+Overall, the interpretation shows that lead time, pricing, deposit policies, and customer engagement are key drivers of hotel booking cancellations. These insights can help hotels identify high-risk reservations and develop strategies to reduce cancellations and improve revenue management.
 
 ---
 
