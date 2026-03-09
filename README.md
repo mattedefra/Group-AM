@@ -159,11 +159,11 @@ The tuned Random Forest model achieved a high level of predictive accuracy for h
 **Model Characteristics**
 The model was optimized using several specific configurations to handle the complexities of the hotel data:
 
-Class Imbalance Handling: It uses the balanced_subsample weight setting to ensure the model doesn't ignore cancellations simply because they are less frequent than successful stays.
+**Class Imbalance Handling:** It uses the balanced_subsample weight setting to ensure the model doesn't ignore cancellations simply because they are less frequent than successful stays.
 
-Structural Depth: The model uses a max_depth of 30 and 100 n_estimators (individual trees) to capture complex, non-linear relationships that a simpler model would miss.
+**Structural Depth:** The model uses a max_depth of 30 and 100 n_estimators (individual trees) to capture complex, non-linear relationships that a simpler model would miss.
 
-Feature Engineering integration: The model relies on a custom processing script that creates aggregate features like total_nights and total_guests, and converts text-based months into numeric values for better analysis.
+**Feature Engineering integration:** The model relies on a custom processing script that creates aggregate features like total_nights and total_guests, and converts text-based months into numeric values for better analysis.
 
 ---
 
