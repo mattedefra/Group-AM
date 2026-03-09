@@ -1,4 +1,4 @@
-# Hotel Booking Cancellation Prediction
+[# Hotel Booking Cancellation Prediction
 
 ## 1. Problem Definition (Business Understanding)
 
@@ -142,6 +142,14 @@ The analysis of categorical variables also provided relevant insights. Different
 
 # **Model Comparison and Selection**
 The project involved developing and tuning three distinct types of predictive models: Logistic Regression, Gradient Boosting, and Random Forest. Each model was evaluated using a consistent pipeline that included automated feature engineering and preprocessing.
+
+### Model Performance Comparison
+
+| Model | ROC-AUC | F1-Score | Accuracy | Recall (Canceled) |
+|------|--------|---------|---------|-------------------|
+| Random Forest | 0.9228 | 0.80 | 0.85 | 0.77 |
+| Gradient Boosting | 0.8955 | 0.74 | 0.83 | 0.65 |
+| Logistic Regression | 0.8538 | 0.72 | 0.79 | 0.72 |
 
 **1. Logistic Regression**
 The Logistic Regression model served as the baseline. After extensive hyperparameter tuning using GridSearchCV, the best version achieved a ROC-AUC of 0.8538 and a Test F1-Score of 0.72. While this model is highly interpretable due to its linear coefficients, it struggled to capture the more complex, non-linear dependencies present in the booking data.
