@@ -220,7 +220,7 @@ The model was optimized using several specific configurations to handle the comp
 
 ## Model Interpretation
 
- After evaluating multiple algorithms, the Tuned Random Forest was selected as the superior model for predicting hotel cancellations. It demonstrated the most effective balance between accurately identifying potential cancellations and maintaining high overall accuracy.
+ Among the tested models, **Random Forest** performed the best. It demonstrated the most effective balance between accurately identifying potential cancellations and maintaining high overall accuracy.
  
  ### Model Performance and Selection
 
