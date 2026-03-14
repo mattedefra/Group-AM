@@ -247,26 +247,6 @@ The SHAP analysis suggests that:
   
 These insights help managers understand why certain bookings are classified as high risk and support more informed decisions, such as applying deposit policies or sending booking reminders.
 
-### Coefficient Interpretation
-Although Random Forest was selected as the final predictive model, Logistic Regression was also examined because its coefficients provide a clear interpretation of how variables influence the probability of cancellation.
-
-In logistic regression models, positive coefficients indicate that a feature increases the likelihood of cancellation, while negative coefficients indicate that the feature reduces that likelihood.
-
-For example, lead time shows a positive relationship with cancellations, meaning that bookings made further in advance are more likely to be canceled.
-
-In contrast, special requests have a negative relationship with cancellations, suggesting that guests who interact more with the booking process are more likely to complete their stay.
-
-Examining these coefficients helps clarify the direction of relationships between variables and booking behaviour, complementing the results from the Random Forest model.
-
-### Partial Dependence Plots
-Partial Dependence Plots (PDPs) help illustrate how the predicted probability of cancellation changes as the value of a specific variable varies, while other variables remain constant.
-
-The PDP for lead time shows that cancellation probability increases as the time between booking and arrival becomes longer. This suggests that reservations made far in advance are more likely to be canceled due to greater uncertainty in travel plans.
-
-The PDP for average daily rate (ADR) shows that higher room prices are associated with a slightly higher probability of cancellation. This may occur when customers reconsider expensive bookings or find cheaper alternative accommodation options.
-
-These visualizations help translate complex model relationships into clear patterns, making the results easier for non-technical stakeholders to understand and apply in decision-making.
-
 ### Summary of Insights
 Overall, the interpretation shows that lead time, pricing, deposit policies, and customer engagement are key drivers of hotel booking cancellations. These insights can help hotels identify high-risk reservations and develop strategies to reduce cancellations and improve revenue management.
 
