@@ -1,4 +1,4 @@
-# Hotel Booking Cancellation Prediction
+[# Hotel Booking Cancellation Prediction
 
 ## 1. Problem Definition (Business Understanding)
 
@@ -35,7 +35,7 @@ Before EDA and modeling:
 - Remove duplicates  
 - Fix incorrect data types  
 - Normalize formats (dates, categories)  
-- Detect outliers  
+- Detect outliers
 
 ---
 
@@ -49,6 +49,16 @@ The choosen dataset contains historical hotel booking information with the targe
 ### Distribution of the Target Variable
 In the analysis, the key objective was to examine how the target variable, IsCanceled, is distributed. The results show that theres is a significant share of bookings canceled, which means that the dataset presents a moderate class imbalance. Cancellations represent a large enough portion of the data to require careful evaluation of the model’s performance. Because of this imbalance, accuracy alone would not be an appropriate metric. ROC–AUC is used instead for a more appropriate fitting as it evaluates how well the model distinguishes between canceled and non-canceled bookings across different probability thresholds. In addition, Recall should require some attention for the canceled class, since failing to identify a cancellation (a false negative) can lead to empty rooms and direct revenue loss. Overall, the distribution of the target variable confirms that this is a binary classification problem and that model evaluation must properly account for class imbalance.
 
+<<<<<<< dionisioaduda-patch-4
+
+### Linear vs non-linear relationships
+When considering whether relationships are linear or nonlinear, the data suggests that several effects may not follow a simple linear pattern. For example, the impact of LeadTime on cancellations may increase more sharply after a certain threshold. This indicates that models capable of capturing nonlinearities and interactions, such as Random Forest, may perform better than purely linear approaches.
+
+### Summing Up
+Overall, the EDA confirms that the dataset contains meaningful patterns that can support predictive modeling. There are clear signals associated with cancellation risk, moderate class imbalance that justifies the chosen evaluation metrics, and potential nonlinear relationships that motivate the comparison between Logistic Regression and Random Forest.
+
+---
+=======
 ### Numerical Variables
 To better understand the numerical variables, we analyzed them using histograms and boxplots in order to observe their distributions and identify possible outliers. This step was important to understand how booking behaviors are distributed and whether there were extreme values that could influence the modeling phase.
 
@@ -67,6 +77,7 @@ Regarding multicollinearity, some numerical features show moderate correlations 
 The analysis of categorical variables also provided relevant insights. Different market segments, distribution channels, and customer types present different cancellation behaviors. This reinforces the idea that not all bookings carry the same level of risk and that categorical variables are likely to play an important role in prediction once properly encoded. 
 
 
+>>>>>>> main
 
 ## 4. Feature Engineering  
 **Team:** John and Mohamed
@@ -126,7 +137,72 @@ The analysis of categorical variables also provided relevant insights. Different
 - Precision  
 - Recall  
 - F1 Score  
-- ROC-AUC  
+- ROC-AUC
+  
+
+# **Model Comparison and Selection**
+The project involved developing and tuning three distinct types of predictive models: Logistic Regression, Gradient Boosting, and Random Forest. Each model was evaluated using a consistent pipeline that included automated feature engineering and preprocessing.
+
+### Model Performance Comparison
+
+| Model | ROC-AUC | F1-Score | Accuracy | Recall (Canceled) |
+|------|--------|---------|---------|-------------------|
+| Random Forest | 0.9228 | 0.80 | 0.85 | 0.77 |
+| Gradient Boosting | 0.8955 | 0.74 | 0.83 | 0.65 |
+| Logistic Regression | 0.8538 | 0.72 | 0.79 | 0.72 |
+
+**1. Logistic Regression**
+The Logistic Regression model served as the baseline. After extensive hyperparameter tuning using GridSearchCV, the best version achieved a ROC-AUC of 0.8538 and a Test F1-Score of 0.72. While this model is highly interpretable due to its linear coefficients, it struggled to capture the more complex, non-linear dependencies present in the booking data.
+
+**2. Gradient Boosting**
+The Gradient Boosting Classifier was implemented to leverage the power of sequential tree building. The tuned version reached a ROC-AUC of 0.8955 and an F1-Score of 0.74. Although it performed better than Logistic Regression, it showed a lower recall (0.65) for cancellations, meaning it missed a significant portion of guests who eventually canceled their bookings.
+
+**3. Random Forest**
+The Random Forest model emerged as the superior performer following a RandomizedSearch for optimal hyperparameters. It achieved the highest scores across all critical evaluation metrics:
+
+- ROC-AUC Score: 0.9228
+- Accuracy: 0.85
+- Precision (Canceled): 0.83
+- Recall (Canceled): 0.77
+- F1-Score (Canceled): 0.80
+
+## **Why Random Forest is the Best Choice**
+The decision to select Random Forest as the primary model for this project is driven by several key factors:
+
+ **Maximum Predictive Power:**
+The Random Forest achieved the highest ROC-AUC (0.9228), indicating a superior ability to distinguish between guests who will stay and those who will cancel. This translates to more reliable business intelligence for hotel management.
+
+**Superior Balance (F1-Score):**
+Unlike the other models, the Random Forest maintained a strong balance between precision (0.83) and recall (0.77). This means the hotel can identify the majority of potential cancellations without raising too many "false alarms" for guests who are likely to show up.
+
+**Handling Non-Linearity and Interactions:**
+The booking dataset contains complex interactions—for instance, how "Lead Time" impacts risk differently depending on the "Market Segment" or "Deposit Type". Random Forest naturally captures these "if-then" relationships through its ensemble of 100 decision trees, whereas Logistic Regression assumes a simpler linear relationship.
+
+**Robustness to Outliers and Noise:**
+By averaging the results of many trees, the Random Forest is less sensitive to the noise identified during the Exploratory Data Analysis, such as extreme values in adr (room rates) or adults.
+
+**Granular Interpretation:**
+Despite its complexity, the model provides clear insights into the business. Through feature importance and SHAP value analysis, it identified that Lead Time (14.17%), Deposit Type (9.89%), and Average Daily Rate (8.67%) are the most critical factors driving the hotel's cancellation rates
+
+
+# **Model Evaluation Results**
+The tuned Random Forest model achieved a high level of predictive accuracy for hotel booking cancellations:
+
+- **ROC-AUC Score**: 0.9228, which represents the model's excellent ability to distinguish between canceled and non-canceled bookings.
+- **Accuracy**: 0.85, meaning 85% of all predictions were correct.
+- **Precision (Canceled):** 0.83, indicating that when the model predicts a cancellation, it is correct 83% of the time.
+- **Recall (Canceled):** 0.77, meaning the model successfully identifies 77% of all actual cancellations.
+- **F1-Score (Canceled):** 0.80, which provides a balance between precision and recall.
+- **Confusion Matrix:** The model correctly identified 22,419 successful stays and 11,245 cancellations, while missing 3,408 cancellations and incorrectly flagging 2,327 stay-ins.
+
+## **Model Characteristics**
+The model was optimized using several specific configurations to handle the complexities of the hotel data:
+
+1. **Class Imbalance Handling:** It uses the balanced_subsample weight setting to ensure the model doesn't ignore cancellations simply because they are less frequent than successful stays.
+
+2. **Structural Depth:** The model uses a max_depth of 30 and 100 n_estimators (individual trees) to capture complex, non-linear relationships that a simpler model would miss.
+
+3. **Feature Engineering integration:** The model relies on a custom processing script that creates aggregate features like total_nights and total_guests, and converts text-based months into numeric values for better analysis.
 
 ---
 
@@ -140,7 +216,39 @@ The analysis of categorical variables also provided relevant insights. Different
 - Feature importance  
 - SHAP values  
 - Coefficient interpretation  
-- Partial dependence plots  
+- Partial dependence plots
+  
+## Model Interpretation
+The Random Forest model was selected as the final model because it achieved the best performance during the evaluation stage. However, in business contexts it is also important to understand the factors driving the model’s predictions in order to support informed decision-making.
+
+To improve transparency, the model was interpreted using feature importance, SHAP values, coefficient interpretation from the Logistic Regression benchmark, and partial dependence plots. These techniques help identify the key variables influencing hotel booking cancellations and make the model’s predictions easier for stakeholders to understand.
+
+### Feature Importance
+Feature importance analysis identifies the variables that contribute most to the model’s predictions.
+
+The results show that lead time (14.16%) is the most influential predictor. This suggests that reservations made far in advance are more likely to be cancelled, indicating that hotels may need stronger confirmation policies or reminder strategies for bookings made several months before arrival.
+
+Another important factor is deposit type, particularly non-refundable deposits (9.89%) and no-deposit bookings (9.45%). Deposit conditions reflect the level of financial commitment associated with a reservation, and bookings made without deposits may have a higher probability of cancellation.
+
+The average daily rate (ADR) (8.67%) also influences cancellation behaviour. Higher room prices may increase the likelihood of cancellations if customers reconsider their booking or find alternative accommodation options.
+
+In contrast, total special requests (8.08%) appear to reduce cancellation risk. Guests who make specific requests during the booking process often demonstrate greater engagement with their reservation and are therefore more likely to complete their stay.
+
+Overall, these results highlight that booking timing, payment conditions, pricing, and customer engagement are key factors influencing hotel booking cancellations.
+
+### SHAP Values
+SHAP (Shapley Additive Explanations) values provide a deeper understanding of how individual features influence model predictions. While feature importance identifies the most important variables overall, SHAP values explain how each feature affects the prediction for a specific booking.
+
+The SHAP analysis suggests that:
+- Higher lead times increase the probability of cancellation.
+- Higher ADR values may also increase cancellation risk.
+- A greater number of special requests tends to reduce the likelihood of cancellation.
+- Repeated guests or guests with clearer travel plans are generally less likely to cancel.
+  
+These insights help managers understand why certain bookings are classified as high risk and support more informed decisions, such as applying deposit policies or sending booking reminders.
+
+### Summary of Insights
+Overall, the interpretation shows that lead time, pricing, deposit policies, and customer engagement are key drivers of hotel booking cancellations. These insights can help hotels identify high-risk reservations and develop strategies to reduce cancellations and improve revenue management.
 
 ---
 
